@@ -1,0 +1,480 @@
+<!doctype html><html><head><meta charset=utf8><meta name="robots" content="noindex,nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Manors Films, présentation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: white gallery walls, black and white frames. Same tokens as the site maquette V2. One slide fills the screen, slate bar at the foot, frame counter in mono. Same tokens as the site maquette so the kit sets the house DA. */
+:root{
+  --ink:#0a0a0a; --ink-2:#161615; --silver:#ecebe6; --ash:#8f8d86; --rule:#2a2a28; --note:#c9a96a;
+  --display:"Jost","Futura","Avenir Next",Helvetica,Arial,sans-serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--silver);font:400 1rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+p{margin:0}
+.mono{font:400 .68rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
+:focus-visible{outline:1px solid var(--silver);outline-offset:3px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+.deck{position:relative;height:100%;display:flex;flex-direction:column}
+.stage{position:relative;flex:1;min-height:0}
+.slide{position:absolute;inset:0;overflow-y:auto;padding-block:clamp(1.5rem,5vh,4rem);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s .6s}
+@media(min-width:760px){.slide{padding-left:max(6vw,env(safe-area-inset-left,0px));padding-right:max(6vw,env(safe-area-inset-right,0px))}}
+.slide.on{opacity:1;visibility:visible;transition:opacity .6s ease}
+.inner{width:100%;max-width:1200px;margin:0 auto;display:grid;gap:clamp(1.2rem,3vh,2.4rem)}
+.bg{position:absolute;inset:0;z-index:-1}
+.bg canvas{width:100%;height:100%;display:block}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.94) 35%,rgba(10,10,10,.2))}
+
+.big{font-size:clamp(2.4rem,6.5vw,5.6rem);line-height:1.02;letter-spacing:-.025em}
+.h{font-size:clamp(1.8rem,4vw,3.2rem);line-height:1.08}
+.lede{font:400 clamp(1.4rem,2.6vw,2.1rem)/1.3 var(--display);letter-spacing:-.015em;max-width:48rem}
+.lede em{font:400 italic 1.05em/1 var(--serif)}
+.muted{color:var(--ash);max-width:40rem}
+.mark{font:500 .95rem/1 var(--display);letter-spacing:.38em}
+.big em,.h em{font:400 italic 1em/1 var(--serif)}
+
+/* foot bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid var(--rule);padding-block:.7rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:var(--ink)}
+.bar .ctl{display:flex;gap:.3rem;align-items:center}
+.bar button{padding:.45rem .7rem;font:400 .68rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ash);border:1px solid transparent}
+.bar button:hover{color:var(--silver);border-color:var(--rule)}
+.count{font:400 .72rem/1 var(--mono);letter-spacing:.14em;color:var(--silver);font-variant-numeric:tabular-nums}
+.progress{height:1px;background:var(--rule);position:relative}
+.progress i{position:absolute;left:0;top:0;bottom:0;background:var(--silver);transition:width .5s ease}
+@media(max-width:600px){.bar .lbl{display:none}}
+
+/* overview */
+.ov{position:absolute;inset:0;background:var(--ink);overflow-y:auto;padding-block:2rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));z-index:5}
+.ov ol{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:grid;gap:1px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));background:var(--rule);border:1px solid var(--rule)}
+.ov button{width:100%;text-align:left;padding:1.2rem;background:var(--ink);display:grid;gap:.5rem;min-height:7rem}
+.ov button:hover{background:var(--ink-2)}
+.ov b{font:400 1.1rem/1.25 var(--display)}
+
+/* references */
+.refs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin:0;padding:0}
+.refs li{list-style:none;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:1.1rem .6rem;text-align:center;font:400 clamp(.9rem,1.3vw,1.05rem)/1.25 var(--display);letter-spacing:.05em;display:grid;place-items:center;min-height:4.4rem;opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease,background .3s}
+.slide.on .refs li{opacity:1;transform:none;transition-delay:calc(var(--i) * 70ms + .2s),calc(var(--i) * 70ms + .2s),0s}
+@media(prefers-reduced-motion:reduce){.refs li{opacity:1;transform:none;transition:none}}
+.refs li span{display:block;margin-top:.35rem;font:400 .56rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ash);opacity:.0;transition:opacity .3s}
+.refs li:hover{background:var(--ink-2)}.refs li:hover span{opacity:1}
+
+/* selector */
+.sel{display:grid;gap:2rem;grid-template-columns:1fr}
+@media(min-width:900px){.sel{grid-template-columns:2fr 3fr;align-items:start}}
+.tabs{display:grid;border-top:1px solid var(--rule)}
+.tabs button{text-align:left;padding:1rem 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font:400 clamp(1.2rem,2.2vw,1.6rem)/1.2 var(--display);color:var(--ash);transition:color .3s,padding .3s}
+.tabs button[aria-selected="true"]{color:var(--silver);padding-left:.8rem}
+.tabs button span{font:400 .62rem/1 var(--mono);letter-spacing:.14em}
+.panel{display:grid;gap:1rem;min-width:0}
+.panel ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem}
+.panel li{padding-left:1.1rem;position:relative;color:var(--silver)}
+.panel li::before{content:"";position:absolute;left:0;top:.75em;width:.5rem;height:1px;background:var(--ash)}
+
+/* frame */
+.frame{position:relative;width:100%;max-width:100%;background:#000;overflow:hidden;aspect-ratio:16/9}
+.frame canvas{display:block;width:100%;height:100%}
+.frame video,.bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slate{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:1rem;padding:.6rem .8rem;font:400 .6rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(233,230,223,.75);background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.two{display:grid;gap:2rem;grid-template-columns:1fr;align-items:center}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr}}
+.facts{display:flex;gap:2rem;flex-wrap:wrap}
+.facts div{display:grid;gap:.3rem}
+.facts strong{font:400 clamp(1.8rem,3vw,2.6rem)/1 var(--display);font-variant-numeric:tabular-nums}
+
+/* reel */
+.reel{display:grid;gap:2rem;grid-template-columns:1fr}
+@media(min-width:960px){.reel{grid-template-columns:5fr 7fr;align-items:start}}
+.list{border-top:1px solid var(--silver)}
+.row{width:100%;display:grid;grid-template-columns:2.2rem 1fr auto;gap:1rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--rule);transition:padding .35s,color .3s;color:var(--ash);text-align:left}
+.row b{font:400 clamp(1.1rem,1.9vw,1.4rem)/1.2 var(--display);color:inherit}
+.row .client{font:500 .62rem/1 var(--display);letter-spacing:.18em;text-transform:uppercase}
+.row[aria-selected="true"],.row:hover{color:var(--silver);padding-left:.6rem}
+.viewer{display:grid;gap:.9rem;min-width:0}
+.viewer .meta{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline}
+.viewer h3{font-size:1.5rem}
+.badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--rule);padding:.45rem .7rem;font:500 .62rem/1 var(--display);letter-spacing:.18em;text-transform:uppercase}
+.badge i{width:1.4rem;height:1.4rem;border:1px solid var(--silver);display:grid;place-items:center;font-style:normal;font-size:.5rem;letter-spacing:0}
+#vcan{transition:opacity .35s}
+/* timeline */
+.tl{display:grid;gap:1.2rem}
+.ruler{position:relative;height:3.2rem;border-bottom:1px solid var(--rule)}
+.ruler span{position:absolute;bottom:0;transform:translateX(-50%);font:400 .6rem/1 var(--mono);letter-spacing:.1em;color:var(--ash);padding-bottom:.5rem;border-left:1px solid var(--rule);height:100%;display:flex;align-items:flex-end;padding-left:.3rem}
+.ruler span:first-child{transform:none}
+input[type=range]{width:100%;accent-color:var(--silver)}
+.beat{display:grid;gap:.5rem;min-height:8rem}
+.beat .tc{font:400 1.6rem/1 var(--mono);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+
+/* columns */
+.cols{display:grid;gap:1.6rem;grid-template-columns:1fr}
+@media(min-width:760px){.cols.c4{grid-template-columns:repeat(4,1fr)}.cols.c3{grid-template-columns:repeat(3,1fr)}}
+.col{border-top:1px solid var(--silver);padding-top:1rem;display:grid;gap:.6rem;align-content:start;min-width:0}
+.col h3{font-size:1.4rem}
+.col p,.col li{color:var(--ash);font-size:.95rem}
+.col ul{margin:0;padding-left:1rem;display:grid;gap:.3rem}
+.logos{position:relative;width:100%;max-width:1100px}
+.logos img{display:block;width:100%;height:auto;mix-blend-mode:lighten}
+.logos .mask{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(5,1fr)}
+.logos .mask i{background:var(--ink);opacity:1;transition:opacity .6s ease}
+.slide.on .logos .mask i{opacity:0;transition-delay:calc(var(--i) * 60ms + .25s)}
+@media(prefers-reduced-motion:reduce){.logos .mask{display:none}}
+.feat{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.feat{grid-template-columns:repeat(3,1fr)}.feat .tile{aspect-ratio:auto;height:clamp(180px,31vh,330px)}}
+button.tile{display:block;width:100%;padding:0;border:0;cursor:pointer;text-align:left;color:inherit}
+.tile .pl{position:absolute;top:.7rem;right:.7rem;width:2.2rem;height:2.2rem;border:1px solid rgba(242,241,236,.7);display:grid;place-items:center;font-size:.7rem;color:#f2f1ec;opacity:.85;transition:opacity .3s}
+.tile:hover .pl{opacity:1}.tile:hover video{transform:scale(1.03)}.tile video{transition:transform .6s ease}
+.lb{position:fixed;inset:0;z-index:30;background:rgba(5,5,5,.96);display:grid;grid-template-rows:auto 1fr;gap:.8rem;padding:max(16px,env(safe-area-inset-top,0px)) 16px 16px}
+.lb[hidden]{display:none}
+.lb .lbh{display:flex;justify-content:space-between;align-items:center;gap:1rem;font:400 .7rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#f2f1ec}
+.lb button{font:400 .7rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#f2f1ec;border:1px solid #444;padding:.6rem .9rem}
+.lb video{width:100%;height:100%;max-height:calc(100vh - 5rem);object-fit:contain;background:#000;min-height:0}
+.bg.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bg.hero::after{background:linear-gradient(90deg,rgba(10,10,10,.78) 20%,rgba(10,10,10,.05))}
+.watch{justify-self:start;font:400 .72rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--silver);border:1px solid var(--silver);padding:.9rem 1.2rem}
+.watch:hover{background:var(--silver);color:var(--ink)}
+@media(min-width:760px){.feat.three .tile{height:clamp(260px,52vh,520px)}}
+.price{font:400 .68rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--note)}
+.wall{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.wall{grid-template-columns:repeat(4,1fr)}}
+.tile{position:relative;background:#000;aspect-ratio:4/5;overflow:hidden}
+@media(min-width:760px){.tile{aspect-ratio:auto;height:clamp(170px,30vh,300px)}}
+.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:.7rem .75rem;display:grid;gap:.2rem;background:linear-gradient(transparent,rgba(0,0,0,.75))}
+.tile figcaption b{font:400 clamp(.95rem,1.4vw,1.1rem)/1.2 var(--display);color:#f2f1ec}
+.tile figcaption span{font:400 .58rem/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(242,241,236,.7)}
+.cols.c6{grid-template-columns:1fr}
+@media(min-width:760px){.cols.c6{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1100px){.cols.c6.row6{grid-template-columns:repeat(6,1fr)}}
+.step{font:400 clamp(1.6rem,2.6vw,2.2rem)/1 var(--display);font-variant-numeric:tabular-nums}
+.prod{display:grid;gap:2.4rem;grid-template-columns:1fr}
+@media(min-width:900px){.prod{grid-template-columns:1fr 1fr}}
+.lane{display:grid;gap:1rem;align-content:start;border-top:1px solid var(--silver);padding-top:1rem;min-width:0}
+.lane h3{font-size:clamp(1.3rem,2vw,1.7rem)}
+.mix{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mix div{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.9rem .8rem;display:grid;gap:.35rem;align-content:start}
+.mix b{font:400 1.05rem/1.2 var(--display)}
+.mix span{font-size:.88rem;color:var(--ash);line-height:1.4}
+.mix .ai{background:var(--ink-2)}
+.mix .ai .mono{color:var(--note)}
+.to{display:flex;align-items:center;gap:.8rem;font:400 .68rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
+.to::before{content:"";flex:0 0 2.2rem;height:1px;background:var(--silver)}
+.out{border:1px solid var(--silver);padding:1rem;display:grid;gap:.3rem}
+.out b{font:400 clamp(1.1rem,1.8vw,1.35rem)/1.25 var(--display)}
+.out span{color:var(--ash);font-size:.9rem}
+
+blockquote{margin:0;font:400 italic clamp(1.5rem,3vw,2.4rem)/1.3 var(--serif);max-width:48rem;text-wrap:balance}
+.contact{display:grid;gap:.8rem}
+.contact .row{display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-block:.8rem}
+.contact .row b{font:400 clamp(1.1rem,2vw,1.5rem)/1.2 var(--display);user-select:all}
+.copy{font:400 .62rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ash);border:1px solid var(--rule);padding:.4rem .6rem}
+.copy:hover{color:var(--silver)}
+.flag{color:var(--note)}
+@media(prefers-reduced-motion:reduce){.slide,.slide.on,.progress i{transition:none}}
+</style>
+
+<div class="deck" id="deck">
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+  <div class="stage" id="stage">
+
+    <section class="slide on" data-title="Couverture" aria-label="Couverture">
+      <div class="bg" style="overflow:hidden"><video autoplay muted loop playsinline preload="auto" poster="media/chanel.jpg" src="media/chanel.mp4" style="transform:scale(1.4)"></video></div>
+      <div class="inner">
+        <span class="mark">MANORS FILMS × MAISON MORAE</span>
+        <h1 class="big">Brand<br><em>content.</em></h1>
+        <p class="lede">Films, photos et contenus, avec l'exigence du cinéma.</p>
+        <span class="mono">Collaboration · Vidéo de lancement et Winter Season · Décembre 2026</span>
+        <p class="mono" style="max-width:46rem;line-height:1.7;opacity:.75;margin-top:1.5rem">© 2026 Manors Films · 444 PROD SAS. Ce document, ses images, ses films et les idées qu'il présente sont la propriété exclusive de Manors Films. Toute reproduction, diffusion ou réutilisation, totale ou partielle, sans accord écrit préalable est interdite.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Alexis du Manoir" aria-label="Alexis du Manoir" style="--silver:#111110;--ash:#5a5953;--rule:#e4e2dd;background:#fff;color:var(--silver)">
+      <div class="inner two">
+        <div style="display:grid;gap:1.4rem">
+          <span class="mono">Qui nous sommes</span>
+          <h2 class="big">Alexis<br><em>du Manoir</em></h2>
+          <p class="muted">Réalisateur, directeur créatif et producteur. Fondateur de Manors Films : des films de marque pour le luxe, la mode et la culture.</p>
+        </div>
+        <div style="display:grid;place-items:center"><img src="media/alexis.jpg" alt="Portrait d'Alexis du Manoir" style="max-height:74vh;width:auto;max-width:100%;display:block"></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Références" aria-label="Références">
+      <div class="inner">
+        <span class="mono">Ils nous ont fait confiance</span>
+        <h2 class="h">Maisons, médias et marques.</h2>
+        <div class="logos"><img src="media/logos.png" alt="Logos des 34 maisons, médias et marques avec lesquelles nous avons collaboré"><div class="mask" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i><i style="--i:28"></i><i style="--i:29"></i><i style="--i:30"></i><i style="--i:31"></i><i style="--i:32"></i><i style="--i:33"></i><i style="--i:34"></i><i style="--i:35"></i><i style="--i:36"></i><i style="--i:37"></i><i style="--i:38"></i><i style="--i:39"></i></div></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Le film d'ouverture" aria-label="Le film d'ouverture">
+      <div class="inner">
+        <span class="mono">Ce que nous imaginons pour vous · I · Le film d'ouverture</span>
+        <h2 class="h">The Postcard Wall, <em>dans un palace.</em></h2>
+        <div class="two" style="align-items:start">
+          <div style="display:grid;gap:1rem">
+            <p class="muted">Une chambre de palace. Autour du miroir, des cartes postales. Elle se remémore tout cet univers.</p>
+            <ol style="margin:0;padding-left:1.2rem;display:grid;gap:.5rem;color:var(--silver)">
+              <li>Chaque carte ouvre un monde.</li>
+              <li>Un matin, elle en décroche une.</li>
+              <li>Coupe : la même vue, mais réelle.</li>
+              <li>Elle lève la carte face au paysage.</li>
+            </ol>
+            <p class="muted">« We all have a someday list. » … « Someday can be now. »</p>
+          </div>
+          <div class="cols" style="gap:1rem">
+            <div class="col"><span class="mono">Sur le site</span><h3>La boucle plein écran</h3></div>
+            <div class="col"><span class="mono">Le film</span><h3>90 secondes</h3></div>
+            <div class="col"><span class="mono">La base</span><h3>La première déclinaison</h3></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Les six univers" aria-label="Les six univers">
+      <div class="inner">
+        <span class="mono">Ce que nous imaginons pour vous · II · Les six univers</span>
+        <h2 class="h">Six ambiances, <em>une même famille.</em></h2>
+        <div class="cols c6 row6"><div class="col"><span class="mono">Montres et haute joaillerie</span><h3>Le Cadran</h3></div><div class="col"><span class="mono">Véhicules</span><h3>La Route</h3></div><div class="col"><span class="mono">Voyages et séjours</span><h3>L'Évasion</h3></div><div class="col"><span class="mono">Maroquinerie et artisanat</span><h3>L'Atelier</h3></div><div class="col"><span class="mono">Événements et accès privilégiés</span><h3>La Loge</h3></div><div class="col"><span class="mono">Biens immobiliers</span><h3>L'Adresse</h3></div></div>
+        <p class="muted">Tournage partenaires, stock sous licence, retouche IA si besoin. Ces images sont aussi les livrables photo.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Les interviews" aria-label="Les interviews">
+      <div class="inner">
+        <span class="mono">Ce que nous imaginons pour vous · III · Les interviews</span>
+        <h2 class="h">La parole <em>de la maison.</em></h2>
+        <div class="cols c3">
+          <div class="col"><span class="mono">Interview</span><h3>Le récit du projet</h3></div>
+          <div class="col"><span class="mono">FAQ</span><h3>Une question, une réponse</h3></div>
+          <div class="col"><span class="mono">Tournage</span><h3>À Paris</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Décembre" aria-label="Décembre">
+      <div class="inner">
+        <span class="mono">Ce que nous imaginons pour vous · IV · Décembre</span>
+        <h2 class="h">Winter Wonder, <em>une communication globale.</em></h2>
+        <div class="facts">
+          <div><strong>10</strong><span class="mono">reels</span></div>
+          <div><strong>40</strong><span class="mono">photos</span></div>
+          <div><strong>2</strong><span class="mono">jours de tournage</span></div>
+        </div>
+        <div class="cols c3">
+          <div class="col"><span class="mono">La saisonnalité</span><h3>Couleurs et matières</h3></div>
+          <div class="col"><span class="mono">Le tournage</span><h3>Deux jours</h3></div>
+          <div class="col"><span class="mono">Le complément</span><h3>Studio, détail, IA et stock</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Brand content · Lacoste" aria-label="Brand content · Lacoste">
+      <div class="bg hero"><video autoplay muted loop playsinline preload="metadata" poster="media/lacoste.jpg" src="media/lacoste.mp4"></video></div>
+      <div class="inner">
+        <span class="mono">Nos films brand content · Film de marque</span>
+        <h2 class="big">Lacoste</h2>
+        <button class="watch" data-full="media/full/lacoste.mp4" data-title="Lacoste">▶ Voir le film</button>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Brand content · France Galop" aria-label="Brand content · France Galop">
+      <div class="bg hero"><video autoplay muted loop playsinline preload="metadata" poster="media/france-galop.jpg" src="media/france-galop.mp4"></video></div>
+      <div class="inner">
+        <span class="mono">Nos films brand content · Campagne</span>
+        <h2 class="big">France Galop</h2>
+        <button class="watch" data-full="media/full/france-galop.mp4" data-title="France Galop">▶ Voir le film</button>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Brand content" aria-label="Brand content">
+      <div class="inner">
+        <span class="mono">Touchez un film pour le voir en grand</span>
+        <h2 class="h">Nos films <em>brand content.</em></h2>
+        <div class="feat three"><button class="tile play" data-full="media/full/castle-club.mp4" data-title="The Castle Club"><video autoplay muted loop playsinline preload="metadata" poster="media/automobile.jpg" src="media/automobile.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Brand content</span><b>The Castle Club</b></figcaption></button><button class="tile play" data-full="media/full/prada.mp4" data-title="Prada"><video autoplay muted loop playsinline preload="metadata" poster="media/prada.jpg" src="media/prada.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Film de marque</span><b>Prada</b></figcaption></button><button class="tile play" data-full="media/full/seoni.mp4" data-title="Séoni"><video autoplay muted loop playsinline preload="metadata" poster="media/seoni.jpg" src="media/seoni.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Film produit</span><b>Séoni</b></figcaption></button></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Nos formats" aria-label="Nos formats">
+      <div class="inner">
+        <span class="mono">Nos formats · pas seulement du narratif</span>
+        <h2 class="h">Un même regard, <em>tous les formats.</em></h2>
+        <div class="wall"><button class="tile play" data-full="media/full/chanel.mp4" data-title="Desrues · Maison d'art Chanel" ><video autoplay muted loop playsinline preload="metadata" poster="media/chanel.jpg" src="media/chanel.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Film de marque</span><b>Desrues · Maison d'art Chanel</b></figcaption></button><button class="tile play" data-full="media/full/orient-express.mp4" data-title="Orient Express" ><video autoplay muted loop playsinline preload="metadata" poster="media/orient-express.jpg" src="media/orient-express.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Reel</span><b>Orient Express</b></figcaption></button><button class="tile play" data-full="media/full/iwc.mp4" data-title="IWC" ><video autoplay muted loop playsinline preload="metadata" poster="media/iwc.jpg" src="media/iwc.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Reel</span><b>IWC</b></figcaption></button><button class="tile play" data-full="media/full/seoni.mp4" data-title="Séoni" ><video autoplay muted loop playsinline preload="metadata" poster="media/seoni.jpg" src="media/seoni.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Film produit</span><b>Séoni</b></figcaption></button><button class="tile play" data-full="media/full/xiaomi.mp4" data-title="Xiaomi" ><video autoplay muted loop playsinline preload="metadata" poster="media/xiaomi.jpg" src="media/xiaomi.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Short movie</span><b>Xiaomi</b></figcaption></button><button class="tile play" data-full="media/full/harcourt.mp4" data-title="Studio Harcourt × Les Molières" ><video autoplay muted loop playsinline preload="metadata" poster="media/harcourt.jpg" src="media/harcourt.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Événement</span><b>Studio Harcourt × Les Molières</b></figcaption></button><button class="tile play" data-full="media/full/france-galop.mp4" data-title="France Galop" ><video autoplay muted loop playsinline preload="metadata" poster="media/france-galop.jpg" src="media/france-galop.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Campagne</span><b>France Galop</b></figcaption></button><button class="tile play" data-full="media/full/castle-club.mp4" data-title="The Castle Club" ><video autoplay muted loop playsinline preload="metadata" poster="media/automobile.jpg" src="media/automobile.mp4"></video><span class="pl" aria-hidden="true">▶</span><figcaption><span>Art de vivre</span><b>The Castle Club</b></figcaption></button></div>
+        <p class="muted">Hors carrousels, toutes les vidéos de Culture Élite et de The Castle Club sont réalisées par Manors Films.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Pourquoi nous confier tout" aria-label="Pourquoi nous confier tout">
+      <div class="inner">
+        <span class="mono">Pourquoi tout nous confier</span>
+        <h2 class="h">Une seule maison, <em>tout le contenu.</em></h2>
+        <div class="cols c6">
+          <div class="col"><span class="mono">I · Volume</span><h3>Films, photos, contenus</h3></div>
+          <div class="col"><span class="mono">II · Rapidité</span><h3>Une semaine</h3></div>
+          <div class="col"><span class="mono">III · Formats</span><h3>Chaque écran</h3></div>
+          <div class="col"><span class="mono">IV · Regard</span><h3>Une même DA</h3></div>
+          <div class="col"><span class="mono">V · Réseau</span><h3>Nos partenaires</h3></div>
+          <div class="col"><span class="mono">VI · Durée</span><h3>Mois après mois</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="L'équipe" aria-label="L'équipe">
+      <div class="inner">
+        <span class="mono">L'équipe</span>
+        <h2 class="h">Une équipe fidèle, <em>un même regard.</em></h2>
+        <p class="lede">Nous prenons la production en charge de A à Z, avec une équipe dédiée à chaque projet.</p>
+        <div class="cols c4">
+          <div class="col"><span class="mono">Direction créative · Réalisateur</span><h3>Alexis du Manoir</h3></div>
+          <div class="col"><span class="mono">Direction créative · Chef opérateur</span><h3>Pablo Ruiz</h3></div>
+          <div class="col"><span class="mono">Montage</span><h3>Alicia Badaut</h3></div>
+          <div class="col"><span class="mono">Effets visuels</span><h3>Charles Antonetti</h3></div>
+        </div>
+        <div class="col" style="border-top:1px solid var(--rule)"><span class="mono">Pour chaque projet, au minimum</span><p style="color:var(--silver)">DA dédié à la marque · chargé de production · assistant de production · réalisateur · chef opérateur · monteur · photographe</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Une collaboration" aria-label="Une collaboration">
+      <div class="inner">
+        <span class="mono">Une collaboration · de la première idée à la livraison</span>
+        <h2 class="h">Six étapes, <em>une seule équipe.</em></h2>
+        <div class="cols c6 row6">
+          <div class="col"><span class="step">01</span><h3>Brief</h3></div>
+          <div class="col"><span class="step">02</span><h3>Concept</h3></div>
+          <div class="col"><span class="step">03</span><h3>Production</h3></div>
+          <div class="col"><span class="step">04</span><h3>Tournage</h3></div>
+          <div class="col"><span class="step">05</span><h3>Livraison</h3></div>
+          <div class="col"><span class="step">06</span><h3>Saison suivante</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Contact" aria-label="Contact">
+      <div class="inner">
+        <span class="mono">Contact</span>
+        <h2 class="big">Faisons exister<br>votre film.</h2>
+        <div class="contact">
+          <div class="row"><span class="mono">Écrire</span><b id="mail">team@manorsfilms.com</b><button class="copy" data-copy="mail">Copier</button></div>
+          <div class="row"><span class="mono">Voir</span><b><a href="https://manorsfilms.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">manorsfilms.com</a></b></div>
+        </div>
+        <span class="mono">Manors Films est une marque de 444 PROD SAS · Paris</span>
+      </div>
+    </section>
+
+  </div>
+  <div class="bar">
+    <span class="mark" style="font-size:.7rem">MANORS FILMS</span>
+    <span class="count" id="count">01 / 12</span>
+    <div class="ctl">
+      <button id="prev" aria-label="Diapositive précédente">←<span class="lbl"> Préc.</span></button>
+      <button id="next" aria-label="Diapositive suivante"><span class="lbl">Suiv. </span>→</button>
+      <button id="ovb" aria-label="Vue d'ensemble">Ensemble</button>
+      <button id="fsb" aria-label="Plein écran">Plein écran</button>
+    </div>
+  </div>
+  <div class="lb" id="lb" hidden role="dialog" aria-label="Lecture du film"><div class="lbh"><span id="lbt"></span><button id="lbx">Fermer ✕</button></div><video id="lbv" controls playsinline></video></div>
+  <div class="ov" id="ov" hidden><ol id="ovl"></ol></div>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')],n=slides.length;
+  let i=0;
+  const pad=x=>String(x).padStart(2,'0');
+  function go(k){
+    k=Math.max(0,Math.min(n-1,k));if(k===i&&slides[k].classList.contains('on'))return;
+    slides[i].classList.remove('on');i=k;slides[i].classList.add('on');
+    document.getElementById('count').textContent=pad(i+1)+' / '+pad(n);
+    document.getElementById('prog').style.width=((i+1)/n*100)+'%';
+    slides[i].querySelectorAll('canvas').forEach(draw);
+    slides[i].querySelectorAll('[data-count]').forEach(countUp);
+    try{localStorage.setItem('mf-presentation-slide',i)}catch(e){}
+  }
+  document.getElementById('prog').style.width=(1/n*100)+'%';
+  document.getElementById('count').textContent='01 / '+pad(n);
+  document.getElementById('prev').onclick=()=>go(i-1);
+  document.getElementById('next').onclick=()=>go(i+1);
+  addEventListener('keydown',e=>{
+    if(e.target.matches('input,textarea,select'))return;
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(i+1)}
+    if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}
+    if(e.key==='Escape')ov.hidden=true;
+  });
+  let x0=null,y0=null;
+  addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)&&!e.target.matches('input'))go(i+(dx<0?1:-1));x0=null});
+
+  // overview
+  const ov=document.getElementById('ov'),ovl=document.getElementById('ovl');
+  slides.forEach((s,k)=>{const li=document.createElement('li');const b=document.createElement('button');b.innerHTML='<span class="mono">'+pad(k+1)+'</span><b></b>';b.querySelector('b').textContent=s.dataset.title;b.onclick=()=>{ov.hidden=true;go(k)};li.appendChild(b);ovl.appendChild(li)});
+  document.getElementById('ovb').onclick=()=>{ov.hidden=!ov.hidden};
+  document.getElementById('fsb').onclick=()=>{try{const p=document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();p&&p.catch&&p.catch(()=>{})}catch(e){}};
+
+  if(document.getElementById('list')){
+  const FILMS=[
+    {t:"Swing",c:"Lacoste",f:"Short movie · 1 min 35",s:"horizon",img:"media/swing-01-lac.jpg",v:"media/swing-boucle-details.mp4",sl:"Avec Fred Stauffer",d:"Un golfeur seul face au parcours, et la quête du coup parfait. Humour, élégance et émotion pour Lacoste. Écrit et réalisé par Alexis du Manoir."},
+    {t:"L'Homme au parapluie",c:"Série originale",f:"Mini film · 1 min",s:"umbrella",img:"media/parapluie-05-bir-hakeim.jpg",v:"media/parapluie-boucle-ballon.mp4",sl:"Ép. 1 · 1 temps pour 2",d:"Un homme élégant et maladroit traverse Paris sous une pluie qu'il est seul à attendre. 480 000 vues et coup de cœur Télérama."},
+    {t:"Keller Palace",c:"Keller Palace",f:"Film de marque",s:"window",sl:"Images à venir",d:"Lumière de fenêtre, fumée, nuit. Le film et ses coulisses, pensés ensemble."},
+    {t:"Short movie",c:"Xiaomi",f:"Mini film de marque",s:"profile",sl:"Images à venir",d:"Une fiction courte pour une marque de technologie, tournée comme du cinéma."}
+  ];
+  const list=document.getElementById('list'),vcan=document.getElementById('vcan');let cur=-1;
+  FILMS.forEach((f,k)=>{const b=document.createElement('button');b.className='row';b.setAttribute('role','tab');b.innerHTML='<span class="mono"></span><b></b><span class="client"></span>';b.children[0].textContent=pad(k+1);b.children[1].textContent=f.t;b.children[2].textContent=f.c;b.addEventListener('click',()=>film(k));b.addEventListener('mouseenter',()=>{if(matchMedia('(hover:hover)').matches)film(k)});list.appendChild(b)});
+  function film(k){if(k===cur)return;cur=k;const f=FILMS[k];[...list.children].forEach((b,j)=>b.setAttribute('aria-selected',j===k));document.getElementById('vtitle').textContent=f.t;document.getElementById('vclient').textContent=f.c;document.getElementById('vtext').textContent=f.d;document.getElementById('vslate').textContent=f.sl;document.getElementById('vfmt').textContent=f.f;vcan.dataset.scene=f.s;const fr=vcan.parentNode,old=fr.querySelector('video');if(old)old.remove();if(f.v){const vd=document.createElement('video');vd.muted=true;vd.loop=true;vd.autoplay=true;vd.playsInline=true;vd.setAttribute('playsinline','');vd.poster=f.img;vd.src=f.v;fr.insertBefore(vd,fr.querySelector('.slate'));vd.play&&vd.play().catch(()=>{})}vcan.style.opacity=.2;setTimeout(()=>{draw(vcan);vcan.style.opacity=1},120)}
+  film(0);
+
+  }
+  if(document.getElementById('tabs')){
+  const F=[
+    {t:'Films de marque',d:"Un film qui raconte ce que la maison est, pas seulement ce qu'elle vend. Écrit, réalisé et produit par nous.",l:['Durée de 60 secondes à 3 minutes','Écriture, casting, tournage, postproduction','Version principale et coupes 6, 15 et 30 secondes','Formats 16:9, 9:16 et 4:5']},
+    {t:'Campagnes',d:"La saison d'une marque, pensée comme un ensemble : film, images fixes et déclinaisons sociales tenus par une même direction artistique.",l:['Brief stratégique et direction artistique','Film, photographie et déclinaisons','Équipe complète, du casting au plateau','Livraison tous formats et tous marchés']},
+    {t:'Mini films',d:"Une minute de cinéma muet ou presque, tendre et drôle, tournée en une journée. Le format qui se partage, avec la tenue d'un vrai film.",l:['Une idée forte, une émotion simple','Une journée de tournage, deux ou trois décors','Avec ou sans créateurs de contenu','Pensé pour Instagram et TikTok']},
+    {t:'Contenus récurrents',d:"Une présence continue sur les réseaux, sans que la marque ait à gérer la production. Même regard, chaque mois.",l:['Journées de production mensuelles','Quinze à vingt contenus livrés par mois','Coordination des talents incluse','Ligne éditoriale tenue sur la durée']}
+  ];
+  const tabs=[...document.querySelectorAll('#tabs button')],panel=document.getElementById('panel');
+  function sel(k){tabs.forEach((b,j)=>b.setAttribute('aria-selected',j===k));const f=F[k];panel.innerHTML='<h3 class="h"></h3><p class="muted"></p><ul></ul>';panel.querySelector('h3').textContent=f.t;panel.querySelector('p').textContent=f.d;const ul=panel.querySelector('ul');f.l.forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li)})}
+  tabs.forEach((b,k)=>b.onclick=()=>sel(k));sel(0);
+
+  }
+  if(document.getElementById('scrub')){
+  const B=[[0,'Déclencheur',"Une image ou un son fort. On retient le spectateur sans un mot."],[5,'Le personnage et le lieu',"Qui il est, où il est. Un cadre suffit."],[10,'Le grain de sable',"Un objet perdu, un raté, un quiproquo. L'élément qui dérange."],[15,'Les rebondissements',"Deux ou trois gags visuels. Ce qui dérangeait commence à faire du bien autour de lui."],[45,'Le retournement',"Un sourire, une logique qui se révèle."],[55,'La clôture',"Une fin douce. Au fond, c'était très bien comme ça."]];
+  const scrub=document.getElementById('scrub'),beat=document.getElementById('beat');
+  function tl(){const v=+scrub.value;let b=B[0];B.forEach(x=>{if(v>=x[0])b=x});beat.innerHTML='<span class="tc"></span><h3 class="h" style="font-size:1.6rem"></h3><p class="muted"></p>';beat.querySelector('.tc').textContent='00:'+pad(v)+':00';beat.querySelector('h3').textContent=b[1];beat.querySelector('p').textContent=b[2]}
+  scrub.oninput=tl;tl();
+
+  }
+  // copy
+  document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>{const el=document.getElementById(b.dataset.copy);const t=el.textContent;const ok=()=>{b.textContent='Copié';setTimeout(()=>b.textContent='Copier',1600)};try{navigator.clipboard.writeText(t).then(ok,()=>{selectEl(el)})}catch(e){selectEl(el)}});
+  function selectEl(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+
+  // count up
+  function countUp(el){const end=+el.dataset.count;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e).toLocaleString('fr-FR').replace(/ | /g,' ');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+
+  // stills
+  function rnd(seed){let s=seed>>>0||1;return()=>((s=Math.imul(s^s>>>15,1|s)+0x6D2B79F5|0,((s^s>>>14)>>>0)/4294967296))}
+  const scenes={
+    window(c,w,h){c.fillStyle='#0b0b0b';c.fillRect(0,0,w,h);c.save();c.translate(w*.6,h*.05);c.transform(1,.18,-.35,1,0,0);for(let k=0;k<10;k++){const g=c.createLinearGradient(0,0,w*.35,0);g.addColorStop(0,'rgba(240,236,228,0)');g.addColorStop(.4,'rgba(240,236,228,.5)');g.addColorStop(1,'rgba(240,236,228,0)');c.fillStyle=g;c.fillRect(0,k*h*.085,w*.35,h*.04)}c.restore();c.fillStyle='#050505';c.beginPath();c.ellipse(w*.72,h*.42,w*.03,h*.1,0,0,7);c.fill();c.beginPath();c.moveTo(w*.66,h);c.quadraticCurveTo(w*.67,h*.55,w*.72,h*.53);c.quadraticCurveTo(w*.77,h*.55,w*.79,h);c.fill()},
+    umbrella(c,w,h,r){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#bdb9b1');g.addColorStop(1,'#3a3937');c.fillStyle=g;c.fillRect(0,0,w,h);c.strokeStyle='rgba(255,255,255,.18)';c.lineWidth=1;for(let k=0;k<260;k++){const x=r()*w,y=r()*h;c.beginPath();c.moveTo(x,y);c.lineTo(x-w*.006,y+h*.05);c.stroke()}c.fillStyle='#0a0a0a';c.beginPath();c.moveTo(w*.38,h*.38);c.quadraticCurveTo(w*.5,h*.12,w*.62,h*.38);c.closePath();c.fill();c.fillRect(w*.498,h*.36,w*.004,h*.2);c.beginPath();c.ellipse(w*.5,h*.47,w*.022,h*.05,0,0,7);c.fill();c.beginPath();c.moveTo(w*.47,h*.86);c.lineTo(w*.475,h*.52);c.lineTo(w*.525,h*.52);c.lineTo(w*.53,h*.86);c.fill();c.fillStyle='rgba(0,0,0,.35)';c.fillRect(0,h*.86,w,h*.14)},
+    horizon(c,w,h){const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#2a2a29');g.addColorStop(.55,'#cfcbc3');g.addColorStop(.58,'#1a1a19');g.addColorStop(1,'#050505');c.fillStyle=g;c.fillRect(0,0,w,h);const s=c.createRadialGradient(w*.7,h*.55,0,w*.7,h*.55,h*.5);s.addColorStop(0,'rgba(255,252,245,.8)');s.addColorStop(1,'rgba(255,252,245,0)');c.fillStyle=s;c.fillRect(0,0,w,h);c.fillStyle='#070707';c.fillRect(w*.18,h*.4,w*.006,h*.18);c.beginPath();c.ellipse(w*.183,h*.385,w*.008,h*.022,0,0,7);c.fill()},
+    profile(c,w,h){c.fillStyle='#0a0a0a';c.fillRect(0,0,w,h);const s=c.createRadialGradient(w*.25,h*.4,0,w*.25,h*.4,w*.5);s.addColorStop(0,'rgba(230,226,218,.7)');s.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=s;c.fillRect(0,0,w,h);c.fillStyle='#050505';c.beginPath();c.ellipse(w*.3,h*.42,w*.06,h*.16,0,0,7);c.fill();c.fillStyle='rgba(235,232,225,.85)';c.fillRect(w*.58,h*.3,w*.12,h*.4);c.fillStyle='#0a0a0a';c.fillRect(w*.59,h*.33,w*.1,h*.34)},
+    portrait(c,w,h){c.fillStyle='#121212';c.fillRect(0,0,w,h);const s=c.createRadialGradient(w*.75,h*.35,0,w*.75,h*.35,w*.6);s.addColorStop(0,'rgba(220,216,208,.5)');s.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=s;c.fillRect(0,0,w,h);c.fillStyle='#050505';c.beginPath();c.ellipse(w*.76,h*.4,w*.08,h*.17,0,0,7);c.fill();c.beginPath();c.moveTo(w*.55,h);c.quadraticCurveTo(w*.6,h*.62,w*.76,h*.6);c.quadraticCurveTo(w*.92,h*.62,w*.98,h);c.fill()}
+  };
+  function draw(cv){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;const d=Math.min(devicePixelRatio||1,2);cv.width=w*d;cv.height=h*d;const c=cv.getContext('2d');c.scale(d,d);const r=rnd(4242);(scenes[cv.dataset.scene]||scenes.window)(c,w,h,r);const v=c.createRadialGradient(w/2,h/2,Math.min(w,h)*.3,w/2,h/2,Math.max(w,h)*.75);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.6)');c.fillStyle=v;c.fillRect(0,0,w,h);const img=c.getImageData(0,0,cv.width,cv.height),p=img.data;for(let k=0;k<p.length;k+=4){const l=(p[k]*.3+p[k+1]*.59+p[k+2]*.11)+(r()-.5)*34;p[k]=p[k+1]=p[k+2]=l}c.putImageData(img,0,0)}
+  slides[0].querySelectorAll('canvas').forEach(draw);
+  let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>slides[i].querySelectorAll('canvas').forEach(draw),200)});
+  try{const s=+localStorage.getItem('mf-presentation-slide');if(s>0&&s<n)go(s)}catch(e){}
+})();
+
+(function(){const lb=document.getElementById('lb'),v=document.getElementById('lbv'),t=document.getElementById('lbt');
+function close(){v.pause();v.removeAttribute('src');v.load();lb.hidden=true}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-full]');if(!b)return;t.textContent=b.dataset.title||'';v.src=b.dataset.full;lb.hidden=false;const p=v.play();p&&p.catch&&p.catch(()=>{})});
+document.getElementById('lbx').onclick=close;lb.addEventListener('click',e=>{if(e.target===lb)close()});
+addEventListener('keydown',e=>{if(lb.hidden)return;e.stopImmediatePropagation();if(e.key==='Escape')close()},true);
+addEventListener('touchend',e=>{if(!lb.hidden)e.stopImmediatePropagation()},true);})();
+</script>
+
+</body></html>
